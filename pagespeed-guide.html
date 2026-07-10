@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Get a 90+ PageSpeed Score Without Breaking Your Design | Divyam Jain — Genos Studio</title>
+<meta name="description" content="Step-by-step guide to achieving 90+ on Google PageSpeed Insights without sacrificing your design. Images, fonts, JavaScript, render-blocking — all covered.">
+<meta name="keywords" content="PageSpeed 90 score, improve website speed, Core Web Vitals fix, website performance optimization">
+<link rel="canonical" href="https://divyam201107.github.io/Genos/pagespeed-guide.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"How to Get a 90+ PageSpeed Score Without Breaking Your Design","datePublished":"2025-04-08","author":{"@type":"Person","name":"Divyam Jain"},"publisher":{"@type":"Person","name":"Divyam Jain","url":"https://divyam201107.github.io/Genos/"}}
+</script>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="cur"><div class="dot"></div><div class="ring"></div></div>
+<div class="nl-mobile" id="nlm">
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="process.html" onclick="closeMob()">Process</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="blog.html" onclick="closeMob()">Blog</a>
+</div>
+<canvas id="threeCanvas"></canvas>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Divyam Jain — Genos Studio"></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="contact.html" class="nav-btn">Start a Project</a>
+    <div class="hb" onclick="toggleMob()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="post-hero">
+  <div class="post-breadcrumb">
+    <a href="index.html">Home</a><span class="sep">/</span>
+    <a href="blog.html">Blog</a><span class="sep">/</span>
+    <span>Web Design</span>
+  </div>
+  <div class="post-cat">Web Design</div>
+  <h1 class="post-title">How to Get a <span class="accent">90+ PageSpeed Score</span> Without Breaking Your Design</h1>
+  <div class="post-meta">
+    <div class="meta-item">📅 <span class="meta-val">Apr 8, 2025</span></div>
+    <div class="meta-item">⏱ <span class="meta-val">9 min read</span></div>
+    <div class="meta-item">✍️ <span class="meta-val">Divyam Jain</span></div>
+  </div>
+</div>
+
+<div class="article-layout">
+  <div></div>
+  <article class="article-body">
+    <p>A 90+ PageSpeed score isn't just a vanity metric. It's a ranking factor, a conversion factor, and a direct measure of how much you respect your visitors' time. The good news: most sites can hit 90+ without any significant design compromise. The bad news: it takes deliberate technical work that most developers skip.</p>
+        <p>Here's exactly how I do it on every site I build.</p>
+
+        <h2 id="step-1-fix-your-images-first-biggest-win" data-num="01 —">Step 1 — Fix Your Images First (Biggest Win)</h2>
+        <p>Images are responsible for the majority of page weight on almost every website I audit. Three changes fix most of the problem:</p>
+        <ul>
+          <li><strong>Convert everything to WebP.</strong> WebP files are typically 25–35% smaller than equivalent JPEGs and PNGs with no visible quality loss. Use Squoosh (free, browser-based) or an automated build step.</li>
+          <li><strong>Set explicit width and height on every image tag.</strong> This prevents Cumulative Layout Shift (CLS) — the annoying page jump as images load. Add <code>width="800" height="600"</code> directly in the HTML.</li>
+          <li><strong>Lazy load below-the-fold images.</strong> Add <code>loading="lazy"</code> to any image that isn't in the initial viewport. Your hero image should have <code>loading="eager"</code> (or no attribute).</li>
+        </ul>
+        <div class="callout"><p><strong>Quick test:</strong> Run your site through PageSpeed Insights right now. If "Serve images in next-gen formats" or "Properly size images" appears in the opportunities section, images are your biggest problem. Fix this first — it typically accounts for 15–25 points of score improvement alone.</p></div>
+
+        <h2 id="step-2-eliminate-render-blocking-resources" data-num="02 —">Step 2 — Eliminate Render-Blocking Resources</h2>
+        <p>Render-blocking resources are CSS or JavaScript files that force the browser to stop building the page until they've finished loading. Every render-blocking resource adds to your Largest Contentful Paint (LCP) time.</p>
+        <ul>
+          <li>Move all non-critical JavaScript to the bottom of the body, or add <code>defer</code> or <code>async</code> attributes</li>
+          <li>Inline critical CSS (the styles needed to render what's visible above the fold) directly in the <code>&lt;head&gt;</code></li>
+          <li>Load non-critical CSS asynchronously using <code>rel="preload"</code> with <code>as="style"</code></li>
+          <li>Remove any unused JavaScript libraries — jQuery is often loaded and barely used</li>
+        </ul>
+
+        <h2 id="step-3-optimise-google-fonts-loading" data-num="03 —">Step 3 — Optimise Google Fonts Loading</h2>
+        <p>Google Fonts are a render-blocking resource by default. Most sites load them incorrectly and lose 5–10 PageSpeed points as a result.</p>
+        <ul>
+          <li>Add <code>rel="preconnect"</code> tags for both <code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code> before your font link tag</li>
+          <li>Add <code>display=swap</code> to your Google Fonts URL so text renders in a fallback font while the web font loads</li>
+          <li>Only load the font weights you actually use — don't load all 9 weights if you only use 400 and 700</li>
+          <li>Consider self-hosting fonts to eliminate the third-party DNS lookup entirely</li>
+        </ul>
+
+        <h2 id="step-4-enable-compression-and-caching-on-your-serv" data-num="04 —">Step 4 — Enable Compression and Caching on Your Server</h2>
+        <p>If you're on a decent host, most of this is automatic. If you're not sure, check:</p>
+        <ul>
+          <li>Gzip or Brotli compression is enabled — text files (HTML, CSS, JS) should be compressed before sending</li>
+          <li>Cache-Control headers are set appropriately — static assets (images, CSS, JS) should cache for at least 1 year</li>
+          <li>You're using a CDN if you have international visitors — Cloudflare's free tier is sufficient for most small sites</li>
+        </ul>
+
+        <h2 id="step-5-reduce-third-party-scripts" data-num="05 —">Step 5 — Reduce Third-Party Scripts</h2>
+        <p>Every third-party script — chat widgets, analytics, ad trackers, social embeds — adds load time and is outside your control. Audit what's running on your site:</p>
+        <ul>
+          <li>Replace heavy analytics (Google Analytics 4 with GTM) with lightweight alternatives like Fathom or Plausible for non-critical sites</li>
+          <li>Load chat widgets only when the user scrolls toward the bottom of the page</li>
+          <li>Replace social embed widgets with static screenshots linked to the original post</li>
+          <li>Remove any scripts you're not actively using — they tend to accumulate</li>
+        </ul>
+
+        <p>Work through these five steps in order and most sites hit 90+ without touching the design at all. The design doesn't cause slow pages — unoptimised assets and careless resource loading do. If you'd like me to <a href="contact.html">audit your site's performance</a> and implement these fixes, it's usually a one-week turnaround.</p>
+
+    <div class="art-footer">
+      <div class="art-tags">
+        <a href="blog.html" class="art-tag">Web Design</a>
+        <a href="blog.html" class="art-tag">Performance</a>
+        <a href="blog.html" class="art-tag">PageSpeed</a>
+      </div>
+      <a href="contact.html" class="art-cta">Work With Me →</a>
+    </div>
+
+  </article>
+
+  <div class="toc-sidebar">
+    <span class="toc-label">In This Post</span>
+    <ul class="toc-list">
+
+    
+      <li><a href="#step-1-fix-your-images-first-biggest-win">01 — Step 1 — Fix Your Images First (Biggest...</a></li>
+      <li><a href="#step-2-eliminate-render-blocking-resources">02 — Step 2 — Eliminate Render-Blocking Reso...</a></li>
+      <li><a href="#step-3-optimise-google-fonts-loading">03 — Step 3 — Optimise Google Fonts Loading</a></li>
+      <li><a href="#step-4-enable-compression-and-caching-on-your-serv">04 — Step 4 — Enable Compression and Caching...</a></li>
+      <li><a href="#step-5-reduce-third-party-scripts">05 — Step 5 — Reduce Third-Party Scripts</a></li>
+    </ul>
+    <div class="toc-share">
+      <span class="share-label">Share This</span>
+      <div class="share-btns">
+        <button class="share-btn" onclick="sharePost('twitter')">𝕏 Twitter / X</button>
+        <button class="share-btn" onclick="sharePost('linkedin')">in LinkedIn</button>
+        <button class="share-btn" onclick="copyLink()">🔗 Copy Link</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="related">
+  <span class="related-label">Keep Reading</span>
+  <h2 class="related-title">More From the Blog</h2>
+  <div class="related-grid" id="related-grid"></div>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-big reveal">
+    <span class="ol">Want These</span>
+    <span class="fi">Results on</span>
+    <span class="pu">Your Site?</span>
+  </div>
+  <a href="contact.html" style="position:relative;z-index:1;font-family:var(--fm);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:#000;padding:18px 40px;text-decoration:none;display:inline-block;transition:all .3s" onmouseover="this.style.background='#A855F7';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='#000'">Let's Talk →</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="f-brand"><img src="logo.png" alt="Divyam Jain"><p>I build websites that rank, SEO that works, and content that converts.</p></div>
+    <div class="f-col"><h5>Work</h5><ul><li><a href="services.html#web">Web Design</a></li><li><a href="services.html#seo">SEO Strategy</a></li><li><a href="services.html#content">Blog Writing</a></li></ul></div>
+    <div class="f-col"><h5>Studio</h5><ul><li><a href="about.html">About Me</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="f-col"><h5>Connect</h5><ul><li><a href="#">Twitter / X</a></li><li><a href="#">LinkedIn</a></li><li><a href="contact.html">hello@genosstudio.com</a></li></ul></div>
+  </div>
+  <div class="footer-bot">
+    <p class="f-copy">© 2025 Divyam Jain — Genos Studio. All rights reserved.</p>
+    <div class="f-soc"><a class="f-s" href="#">TW</a><a class="f-s" href="#">LI</a><a class="f-s" href="#">IG</a></div>
+  </div>
+</footer>
+
+<script src="posts-data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Web Design, SEO & Content | Divyam Jain — Genos Studio</title>
+<meta name="description" content="I offer professional web design & development, SEO strategy, and content writing services. Built for rankings, conversions, and growth.">
+<meta name="keywords" content="web design services, SEO services, blog writing service, content marketing, website development India">
+<link rel="canonical" href="https://divyam201107.github.io/Genos/services.html">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+/* SERVICES PAGE SPECIFICS */
+.services-full { position: relative; z-index: 1; }
+
+/* Big service blocks */
+.service-block {
+  padding: 120px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.service-block:nth-child(even) { direction: rtl; }
+.service-block:nth-child(even) > * { direction: ltr; }
+
+.sb-num {
+  font-family: var(--fm); font-size: 11px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--purple-hit); margin-bottom: 20px;
+  display: block;
+}
+.sb-title {
+  font-family: var(--fd); font-size: clamp(40px,5vw,70px);
+  font-weight: 800; letter-spacing: -0.03em; line-height: 1;
+  margin-bottom: 28px;
+}
+.sb-desc {
+  font-size: 17px; line-height: 1.9; color: rgba(255,255,255,0.5);
+  margin-bottom: 36px;
+}
+.sb-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 44px; }
+.sb-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.5;
+}
+.sb-list li::before {
+  content: '—'; color: var(--purple-hit);
+  font-family: var(--fm); flex-shrink: 0; margin-top: 1px;
+}
+
+/* Visual panel */
+.sb-visual {
+  background: #080808; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 2px; padding: 56px 48px; min-height: 400px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.sb-visual::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--purple-bright));
+}
+.sb-visual-label {
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.25);
+}
+.sb-visual-big {
+  font-family: var(--fd); font-size: clamp(60px,8vw,110px);
+  font-weight: 800; letter-spacing: -0.04em; line-height: 1;
+  color: rgba(255,255,255,0.04);
+}
+.sb-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.sb-tag {
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5);
+  transition: all 0.3s;
+}
+.sb-tag:hover { border-color: var(--purple-bright); color: var(--purple-hit); }
+
+/* Pricing hint */
+.pricing-hint {
+  position: relative; z-index: 1;
+  padding: 100px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+}
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+  margin-top: 80px; max-width: 1000px; margin-left: auto; margin-right: auto;
+}
+.price-card {
+  padding: 60px 44px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: #000;
+  transition: all 0.4s;
+  position: relative;
+}
+.price-card.featured {
+  background: #0a0a0a;
+  border-color: rgba(168,85,247,0.4);
+}
+.price-card.featured::before {
+  content: 'Most Popular';
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; background: var(--purple-bright);
+  color: #000; padding: 6px 16px;
+}
+.price-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+.pc-name { font-family: var(--fm); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+.pc-price { font-family: var(--fd); font-size: clamp(40px,5vw,64px); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+.pc-note  { font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 36px; }
+.pc-feats { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+.pc-feats li { font-size: 14px; color: rgba(255,255,255,0.6); display: flex; gap: 10px; align-items: flex-start; }
+.pc-feats li::before { content: '✓'; color: var(--purple-bright); flex-shrink: 0; }
+
+@media (max-width: 1024px) {
+  .service-block { grid-template-columns: 1fr; }
+  .service-block:nth-child(even) { direction: ltr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }
+}
+@media (max-width: 768px) {
+  .service-block { padding: 80px 24px; gap: 40px; }
+  .pricing-hint { padding: 80px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cur"><div class="dot"></div><div class="ring"></div></div>
+<div class="nl-mobile" id="nlm">
+  <a href="index.html"    onclick="closeMob()">Home</a>
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="process.html"  onclick="closeMob()">Process</a>
+  <a href="about.html"    onclick="closeMob()">About Me</a>
+  <a href="blog.html"     onclick="closeMob()">Blog</a>
+</div>
+<canvas id="threeCanvas"></canvas>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Divyam Jain — Genos Studio"></a>
+  <ul class="nav-links">
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about.html">About Me</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="contact.html" class="nav-btn">Start a Project</a>
+    <div class="hb" onclick="toggleMob()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="page-hero-label">What I Do</span>
+  <h1 class="page-hero-title">
+    <span>Services That</span>
+    <span class="stroke">Actually</span>
+    <span class="hit">Move Needles.</span>
+  </h1>
+  <p class="page-hero-sub">Three disciplines. One studio. Every service I offer is designed to connect to the others so your website, your search strategy, and your content all push in the same direction.</p>
+</div>
+
+<!-- SERVICE BLOCKS -->
+<div class="services-full">
+
+  <!-- WEB -->
+  <div class="service-block" id="web">
+    <div class="reveal">
+      <span class="sb-num">01 &mdash; Web Design &amp; Development</span>
+      <h2 class="sb-title">Sites Built to Convert.</h2>
+      <p class="sb-desc">A beautiful website that nobody visits is just an expensive business card. I build sites that look extraordinary and are engineered to rank, load fast, and turn visitors into clients.</p>
+      <ul class="sb-list">
+        <li>Custom design from scratch — no templates, no shortcuts</li>
+        <li>PageSpeed 90+ guaranteed on desktop and mobile</li>
+        <li>SEO-ready architecture baked in from day one</li>
+        <li>Conversion-rate-optimised layouts and copy structure</li>
+        <li>Next.js, React, or WordPress — whatever fits your business</li>
+        <li>Full handover with CMS training so you stay in control</li>
+      </ul>
+      <a href="contact.html" class="btn-solid">Get a Web Quote</a>
+    </div>
+    <div class="sb-visual reveal" style="transition-delay:0.2s">
+      <div class="sb-visual-label">Web Development</div>
+      <div class="sb-visual-big">01</div>
+      <div class="sb-tags">
+        <span class="sb-tag">Next.js</span><span class="sb-tag">React</span>
+        <span class="sb-tag">WordPress</span><span class="sb-tag">Tailwind</span>
+        <span class="sb-tag">Figma</span><span class="sb-tag">CRO</span>
+        <span class="sb-tag">Core Web Vitals</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEO -->
+  <div class="service-block" id="seo">
+    <div class="reveal">
+      <span class="sb-num">02 &mdash; SEO Strategy</span>
+      <h2 class="sb-title">Rank for What Matters.</h2>
+      <p class="sb-desc">Getting to page one takes more than keywords and hope. I build complete SEO systems — technical foundations, on-page optimisation, authority-building links — and then I sustain them.</p>
+      <ul class="sb-list">
+        <li>Full technical SEO audit and fix implementation</li>
+        <li>Keyword research mapped to buyer intent at every funnel stage</li>
+        <li>On-page optimisation: titles, structure, internal links, schema</li>
+        <li>White-hat link building from real, relevant domains</li>
+        <li>Local SEO for businesses targeting specific regions</li>
+        <li>Monthly reporting with plain-English explanations</li>
+      </ul>
+      <a href="contact.html" class="btn-solid">Get an SEO Audit</a>
+    </div>
+    <div class="sb-visual reveal" style="transition-delay:0.2s">
+      <div class="sb-visual-label">SEO Strategy</div>
+      <div class="sb-visual-big">02</div>
+      <div class="sb-tags">
+        <span class="sb-tag">Technical SEO</span><span class="sb-tag">On-Page</span>
+        <span class="sb-tag">Link Building</span><span class="sb-tag">Local SEO</span>
+        <span class="sb-tag">Schema</span><span class="sb-tag">Core Web Vitals</span>
+        <span class="sb-tag">GSC</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="service-block" id="content">
+    <div class="reveal">
+      <span class="sb-num">03 &mdash; Content &amp; Blog Writing</span>
+      <h2 class="sb-title">Words That Pull People In.</h2>
+      <p class="sb-desc">Content is the long game — and the most durable asset you can invest in. I write strategic blog posts, landing page copy, and content clusters that rank for the terms your customers search every day.</p>
+      <ul class="sb-list">
+        <li>Content strategy and topic cluster mapping</li>
+        <li>Long-form SEO blog posts targeting high-intent keywords</li>
+        <li>Landing page and homepage copy built around conversion</li>
+        <li>Content calendar planning and editorial management</li>
+        <li>Internal linking strategy to pass authority across your site</li>
+        <li>Repurposing existing content to recover lost rankings</li>
+      </ul>
+      <a href="contact.html" class="btn-solid">Start a Content Plan</a>
+    </div>
+    <div class="sb-visual reveal" style="transition-delay:0.2s">
+      <div class="sb-visual-label">Content &amp; Blog</div>
+      <div class="sb-visual-big">03</div>
+      <div class="sb-tags">
+        <span class="sb-tag">Blog Posts</span><span class="sb-tag">Copywriting</span>
+        <span class="sb-tag">Content Strategy</span><span class="sb-tag">Topic Clusters</span>
+        <span class="sb-tag">Editorial</span><span class="sb-tag">Internal Linking</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PRICING -->
+<div class="pricing-hint">
+  <div class="reveal">
+    <p class="s-label">Transparent Pricing</p>
+    <h2 class="s-title">No Hidden Fees. <span class="outline">No Surprises.</span></h2>
+    <p style="color:rgba(255,255,255,0.4);font-size:16px;margin-top:20px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8;">Every project is scoped to your needs. These are starting points — contact me for a precise quote.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="pc-name">Starter</div>
+      <div class="pc-price">&#8377;25K</div>
+      <div class="pc-note">One-time</div>
+      <ul class="pc-feats">
+        <li>5-page website</li>
+        <li>Mobile-responsive design</li>
+        <li>Basic on-page SEO</li>
+        <li>Contact form + Google Maps</li>
+        <li>2 rounds of revisions</li>
+      </ul>
+      <a href="contact.html" class="btn-ghost" style="width:100%;text-align:center;">Get Started</a>
+    </div>
+    <div class="price-card featured reveal" style="transition-delay:0.1s">
+      <div class="pc-name">Growth</div>
+      <div class="pc-price">&#8377;75K</div>
+      <div class="pc-note">One-time + monthly SEO</div>
+      <ul class="pc-feats">
+        <li>Custom design, 10+ pages</li>
+        <li>Full SEO setup &amp; keyword research</li>
+        <li>4 blog posts per month</li>
+        <li>Monthly SEO report</li>
+        <li>3-month growth guarantee</li>
+        <li>Unlimited revisions</li>
+      </ul>
+      <a href="contact.html" class="btn-solid" style="width:100%;text-align:center;">Most Popular</a>
+    </div>
+    <div class="price-card reveal" style="transition-delay:0.2s">
+      <div class="pc-name">Authority</div>
+      <div class="pc-price">Custom</div>
+      <div class="pc-note">Ongoing retainer</div>
+      <ul class="pc-feats">
+        <li>Full web design &amp; development</li>
+        <li>Aggressive SEO campaign</li>
+        <li>8+ blog posts per month</li>
+        <li>Link building program</li>
+        <li>Direct access to me, always</li>
+        <li>Weekly strategy calls</li>
+      </ul>
+      <a href="contact.html" class="btn-ghost" style="width:100%;text-align:center;">Let's Talk</a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-big reveal">
+    <span class="outline">Not Sure</span>
+    <span class="fill">Which Service?</span>
+    <span class="purple">Let's Figure It Out.</span>
+  </div>
+  <div class="cta-form reveal" style="transition-delay:0.2s">
+    <input type="email" id="emailIn" placeholder="your@email.com">
+    <button onclick="handleCTA()">Send It &rarr;</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="f-brand"><img src="logo.png" alt="Divyam Jain — Genos Studio"><p>I build websites that rank, SEO that works, and content that converts.</p></div>
+    <div class="f-col"><h5>Work</h5><ul><li><a href="services.html#web">Web Design</a></li><li><a href="services.html#seo">SEO Strategy</a></li><li><a href="services.html#content">Blog Writing</a></li></ul></div>
+    <div class="f-col"><h5>Studio</h5><ul><li><a href="about.html">About Me</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="f-col"><h5>Connect</h5><ul><li><a href="#">Twitter / X</a></li><li><a href="#">LinkedIn</a></li><li><a href="contact.html">hello@genosstudio.com</a></li></ul></div>
+  </div>
+  <div class="footer-bot">
+    <p class="f-copy">&copy; 2025 Divyam Jain — Genos Studio. All rights reserved.</p>
+    <div class="f-soc"><a class="f-s" href="#">TW</a><a class="f-s" href="#">LI</a><a class="f-s" href="#">IG</a></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
