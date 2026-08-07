@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://divyam201107.github.io/Genos/sitemap.xml
