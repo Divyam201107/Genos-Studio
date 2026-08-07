@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Loading… | Divyam Jain — Genos Studio</title>
+<meta id="pageDesc" name="description" content="">
+<meta id="pageKeywords" name="keywords" content="">
+<link id="pageCanonical" rel="canonical" href="">
+<script id="pageSchema" type="application/ld+json"></script>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="cur"><div class="dot"></div><div class="ring"></div></div>
+<div class="nl-mobile" id="nlm">
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="process.html" onclick="closeMob()">Process</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="blog.html" onclick="closeMob()">Blog</a>
+</div>
+<canvas id="threeCanvas"></canvas>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Divyam Jain — Genos Studio"></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="contact.html" class="nav-btn">Start a Project</a>
+    <div class="hb" onclick="toggleMob()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- Loading state -->
+<div id="loadingState" style="position:relative;z-index:1;padding:200px 60px;text-align:center;color:rgba(255,255,255,0.4);font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;">
+  Loading post…
+</div>
+
+<!-- Not found state -->
+<div id="notFoundState" style="display:none;position:relative;z-index:1;padding:200px 60px;text-align:center;">
+  <div style="font-family:'Syne',sans-serif;font-size:40px;font-weight:800;margin-bottom:16px;">Post Not Found</div>
+  <p style="color:rgba(255,255,255,0.4);margin-bottom:32px;">This post doesn't exist or may have been moved.</p>
+  <a href="blog.html" class="btn-solid">Back to Blog</a>
+</div>
+
+<!-- Post content, filled in by JS -->
+<div id="postContent" style="display:none">
+
+  <div class="post-hero">
+    <div class="post-breadcrumb">
+      <a href="index.html">Home</a><span class="sep">/</span>
+      <a href="blog.html">Blog</a><span class="sep">/</span>
+      <span id="breadcrumbCat"></span>
+    </div>
+    <div class="post-cat" id="postCat"></div>
+    <h1 class="post-title" id="postTitle"></h1>
+    <div class="post-meta">
+      <div class="meta-item">📅 <span class="meta-val" id="postDate"></span></div>
+      <div class="meta-item">⏱ <span class="meta-val" id="postRead"></span></div>
+      <div class="meta-item">✍️ <span class="meta-val">Divyam Jain</span></div>
+    </div>
+  </div>
+
+  <div class="article-layout">
+    <div></div>
+    <article class="article-body" id="articleBody"></article>
+
+    <div class="toc-sidebar">
+      <span class="toc-label">In This Post</span>
+      <ul class="toc-list" id="tocList"></ul>
+      <div class="toc-share">
+        <span class="share-label">Share This</span>
+        <div class="share-btns">
+          <button class="share-btn" onclick="sharePost('twitter')">𝕏 Twitter / X</button>
+          <button class="share-btn" onclick="sharePost('linkedin')">in LinkedIn</button>
+          <button class="share-btn" onclick="copyLink()">🔗 Copy Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="related">
+    <span class="related-label">Keep Reading</span>
+    <h2 class="related-title">More From the Blog</h2>
+    <div class="related-grid" id="related-grid"></div>
+  </div>
+
+  <div class="cta-strip">
+    <div class="cta-big reveal">
+      <span class="ol">Want Help</span>
+      <span class="fi">With Your</span>
+      <span class="pu">Own Site?</span>
+    </div>
+    <a href="contact.html" style="position:relative;z-index:1;font-family:var(--fm);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:#000;padding:18px 40px;text-decoration:none;display:inline-block;transition:all .3s" onmouseover="this.style.background='#A855F7';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='#000'">Let's Talk →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="f-brand"><img src="logo.png" alt="Divyam Jain"><p>I build websites that rank, SEO that works, and content that converts.</p></div>
+    <div class="f-col"><h5>Work</h5><ul><li><a href="services.html#web">Web Design</a></li><li><a href="services.html#seo">SEO Strategy</a></li><li><a href="services.html#content">Blog Writing</a></li></ul></div>
+    <div class="f-col"><h5>Studio</h5><ul><li><a href="about.html">About Me</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="f-col"><h5>Connect</h5><ul><li><a href="#">Twitter / X</a></li><li><a href="#">LinkedIn</a></li><li><a href="contact.html">divyam@genosstudio.co</a></li></ul></div>
+  </div>
+  <div class="footer-bot">
+    <p class="f-copy">© 2025 Divyam Jain — Genos Studio. All rights reserved.</p>
+    <div class="f-soc"><a class="f-s" href="#">TW</a><a class="f-s" href="#">LI</a><a class="f-s" href="#">IG</a></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+// ═══════════════════════════════════════════
+// DYNAMIC POST RENDERER
+// Reads ?slug=xxx from the URL, fetches posts-data.json,
+// finds the matching post, and renders it using the same
+// visual language as the rest of the site.
+// ═══════════════════════════════════════════
+
+function slugify(t) {
+  return t.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,'-').slice(0,60);
+}
+
+function formatDateDisplay(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+async function renderPost() {
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+
+  let data;
+  try {
+    const res = await fetch('posts-data.json');
+    data = await res.json();
+  } catch (e) {
+    showNotFound();
+    return;
+  }
+
+  const posts = data.posts || [];
+  const post = posts.find(p => p.slug === slug);
+
+  if (!post) {
+    showNotFound();
+    return;
+  }
+
+  window.__ALL_POSTS__ = posts; // used by related-posts rendering
+
+  // ── SEO meta ──
+  document.getElementById('pageTitle').textContent = `${post.title} | Divyam Jain — Genos Studio`;
+  document.getElementById('pageDesc').setAttribute('content', post.description || post.title);
+  document.getElementById('pageKeywords').setAttribute('content', post.keywords || '');
+  document.getElementById('pageCanonical').setAttribute('href', `https://genosstudio.co/post.html?slug=${post.slug}`);
+  document.getElementById('pageSchema').textContent = JSON.stringify({
+    "@context": "https://schema.org", "@type": "Article",
+    "headline": post.title, "datePublished": post.date,
+    "author": {"@type": "Person", "name": "Divyam Jain"},
+    "publisher": {"@type": "Person", "name": "Divyam Jain", "url": "https://genosstudio.co/"}
+  });
+
+  // ── Hero ──
+  document.getElementById('breadcrumbCat').textContent = post.category;
+  document.getElementById('postCat').textContent = post.category;
+  document.getElementById('postTitle').textContent = post.title;
+  document.getElementById('postDate').textContent = formatDateDisplay(post.date);
+  document.getElementById('postRead').textContent = post.read_time;
+
+  // ── Render markdown body ──
+  const rawHtml = marked.parse(post.body || '');
+  const wrap = document.createElement('div');
+  wrap.innerHTML = rawHtml;
+
+  // add ids + data-num to h2 headings, build TOC
+  const h2s = wrap.querySelectorAll('h2');
+  const tocItems = [];
+  h2s.forEach((h2, i) => {
+    const num = String(i + 1).padStart(2, '0');
+    const text = h2.textContent.trim();
+    const id = slugify(text) || ('section-' + (i + 1));
+    h2.setAttribute('id', id);
+    h2.setAttribute('data-num', num + ' —');
+    const short = text.length < 42 ? text : text.slice(0, 39) + '...';
+    tocItems.push(`<li><a href="#${id}">${num} — ${short}</a></li>`);
+  });
+
+  document.getElementById('articleBody').innerHTML = wrap.innerHTML;
+  document.getElementById('tocList').innerHTML = tocItems.join('') || '<li style="color:rgba(255,255,255,0.3)">No sections</li>';
+
+  // ── Related posts ──
+  const others = posts.filter(p => p.slug !== post.slug).slice(0, 3);
+  document.getElementById('related-grid').innerHTML = others.map(p => `
+    <a href="post.html?slug=${p.slug}" class="related-card">
+      <div class="rc-arrow">↗</div>
+      <div class="rc-cat">${p.category}</div>
+      <div class="rc-title">${p.title}</div>
+      <div class="rc-meta"><span>${formatDateDisplay(p.date)}</span><span>${p.read_time}</span></div>
+    </a>`).join('');
+
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('postContent').style.display = 'block';
+
+  // re-run reveal + TOC-highlight observers now that content exists
+  if (window.initPostObservers) window.initPostObservers();
+}
+
+function showNotFound() {
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('notFoundState').style.display = 'block';
+}
+
+renderPost();
+</script>
+</body>
+</html>

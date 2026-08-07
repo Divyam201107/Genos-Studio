@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Process — How I Work | Divyam Jain, Genos Studio</title>
+<meta name="description" content="See how I take a project from discovery to domination. My proven 4-step process covers web design, SEO strategy, content, and growth.">
+<meta name="keywords" content="web design process, SEO process, how website project works, freelance web design process">
+<link rel="canonical" href="https://genosstudio.co/process.html">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+.process-full {
+  position: relative; z-index: 1;
+}
+.process-step-full {
+  padding: 100px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid; grid-template-columns: 280px 1fr; gap: 100px; align-items: start;
+}
+.psf-left {}
+.psf-num {
+  font-family: var(--fd); font-size: clamp(80px,12vw,160px);
+  font-weight: 800; line-height: 1; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.04);
+  margin-bottom: 0;
+}
+.psf-label {
+  font-family: var(--fm); font-size: 11px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--purple-hit); margin-bottom: 16px; display: block;
+}
+.psf-title {
+  font-family: var(--fd); font-size: clamp(32px,4vw,52px);
+  font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 28px;
+}
+.psf-desc {
+  font-size: 17px; line-height: 1.9; color: rgba(255,255,255,0.5); margin-bottom: 36px;
+}
+.psf-deliverables {
+  background: #080808; border: 1px solid rgba(255,255,255,0.07);
+  padding: 36px 40px; margin-top: 8px;
+}
+.pd-label {
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 24px;
+}
+.pd-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.pd-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  font-size: 15px; color: rgba(255,255,255,0.6);
+}
+.pd-list li::before { content: '&#10022;'; color: var(--purple-hit); font-size: 10px; margin-top: 5px; flex-shrink: 0; }
+
+.faq-section {
+  position: relative; z-index: 1;
+  padding: 120px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 80px; }
+.faq-item {
+  padding: 44px 40px; border: 1px solid rgba(255,255,255,0.07);
+  background: #000; transition: border-color 0.3s;
+}
+.faq-item:hover { border-color: rgba(168,85,247,0.3); }
+.fq { font-family: var(--fd); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 16px; }
+.fa { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.45); }
+
+@media (max-width: 1024px) {
+  .process-step-full { grid-template-columns: 1fr; gap: 40px; }
+  .faq-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .process-step-full { padding: 80px 24px; }
+  .faq-section { padding: 80px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cur"><div class="dot"></div><div class="ring"></div></div>
+<div class="nl-mobile" id="nlm">
+  <a href="index.html"    onclick="closeMob()">Home</a>
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="process.html"  onclick="closeMob()">Process</a>
+  <a href="about.html"    onclick="closeMob()">About Me</a>
+  <a href="blog.html"     onclick="closeMob()">Blog</a>
+</div>
+<canvas id="threeCanvas"></canvas>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Divyam Jain — Genos Studio"></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="process.html" class="active">Process</a></li>
+    <li><a href="about.html">About Me</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="contact.html" class="nav-btn">Start a Project</a>
+    <div class="hb" onclick="toggleMob()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <span class="page-hero-label">How I Work</span>
+  <h1 class="page-hero-title">
+    <span>From Zero</span>
+    <span class="stroke">to Domination</span>
+    <span class="hit">in 4 Steps.</span>
+  </h1>
+  <p class="page-hero-sub">Every project runs through the same battle-tested process. No surprises, no scope creep, no waiting. You always know exactly where your project stands and what's coming next.</p>
+</div>
+
+<div class="process-full">
+
+  <div class="process-step-full">
+    <div class="reveal-left">
+      <div class="psf-num">01</div>
+    </div>
+    <div class="reveal" style="transition-delay:0.1s">
+      <span class="psf-label">Step One</span>
+      <h2 class="psf-title">Discovery &amp; Diagnosis</h2>
+      <p class="psf-desc">Before I touch a single pixel or write a single line of code, I need to understand your business, your customers, and your competition. This phase is about asking the uncomfortable questions: Why aren&rsquo;t you ranking? Why aren&rsquo;t visitors converting? What does your ideal customer actually search for?</p>
+      <p class="psf-desc">I audit your existing site, analyse your top competitors&rsquo; SEO profiles, and build a clear picture of the opportunity. This becomes the foundation that every decision is made from.</p>
+      <div class="psf-deliverables">
+        <div class="pd-label">What You Get</div>
+        <ul class="pd-list">
+          <li>Complete technical SEO audit</li>
+          <li>Competitor analysis (top 5 rivals)</li>
+          <li>Keyword opportunity map</li>
+          <li>Current site conversion assessment</li>
+          <li>Written diagnosis and opportunity report</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="process-step-full">
+    <div class="reveal-left">
+      <div class="psf-num">02</div>
+    </div>
+    <div class="reveal" style="transition-delay:0.1s">
+      <span class="psf-label">Step Two</span>
+      <h2 class="psf-title">Strategy Blueprint</h2>
+      <p class="psf-desc">No project starts in Figma or in code. It starts with a strategy document. I map out exactly which keywords your site will target, what content needs to be created, how the information architecture will work, and what the design direction will look like before a single hour of execution is billed.</p>
+      <p class="psf-desc">This step exists to eliminate surprises. You approve the direction before I build it. Changes at this stage cost a conversation &mdash; changes after build cost time and money.</p>
+      <div class="psf-deliverables">
+        <div class="pd-label">What You Get</div>
+        <ul class="pd-list">
+          <li>Complete keyword strategy and content plan</li>
+          <li>Site information architecture</li>
+          <li>Design direction and moodboard</li>
+          <li>Project timeline with milestones</li>
+          <li>Fixed-price proposal document</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="process-step-full">
+    <div class="reveal-left">
+      <div class="psf-num">03</div>
+    </div>
+    <div class="reveal" style="transition-delay:0.1s">
+      <span class="psf-label">Step Three</span>
+      <h2 class="psf-title">Design &amp; Build</h2>
+      <p class="psf-desc">This is where most agencies go quiet and come back six weeks later with something you weren&rsquo;t expecting. I don&rsquo;t do that. I share work-in-progress at every major milestone. You see the design before the build. You see the build before the launch. Nothing ships without your sign-off.</p>
+      <p class="psf-desc">Development is done to production standards from day one &mdash; proper semantic HTML, schema markup, image optimisation, Core Web Vitals compliance. SEO isn&rsquo;t sprinkled on at the end. It&rsquo;s in the structure from the start.</p>
+      <div class="psf-deliverables">
+        <div class="pd-label">What You Get</div>
+        <ul class="pd-list">
+          <li>High-fidelity design mockups for review</li>
+          <li>Staged development with live preview links</li>
+          <li>Full on-page SEO implementation</li>
+          <li>Schema markup and meta structure</li>
+          <li>Mobile and cross-browser QA testing</li>
+          <li>CMS setup and handover training</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="process-step-full">
+    <div class="reveal-left">
+      <div class="psf-num">04</div>
+    </div>
+    <div class="reveal" style="transition-delay:0.1s">
+      <span class="psf-label">Step Four</span>
+      <h2 class="psf-title">Launch &amp; Dominate</h2>
+      <p class="psf-desc">Launch day is not the finish line &mdash; it&rsquo;s the starting gun. A new site takes time to earn Google&rsquo;s trust. Content compounds month over month. Backlinks accumulate. Rankings rise. The real work happens in the 90 days after launch, and I stay with you through it.</p>
+      <p class="psf-desc">Monthly reporting keeps you informed without jargon. I tell you what moved, what I&rsquo;re doing next, and why. If something isn&rsquo;t working, I say so and I adjust. No strategy is so sacred it can&rsquo;t be questioned.</p>
+      <div class="psf-deliverables">
+        <div class="pd-label">What You Get</div>
+        <ul class="pd-list">
+          <li>Managed launch with zero downtime</li>
+          <li>Google Search Console &amp; Analytics setup</li>
+          <li>Monthly SEO and traffic report</li>
+          <li>Ongoing content publishing (retainer)</li>
+          <li>Quarterly strategy review call</li>
+          <li>Priority support for site issues</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="reveal">
+    <p class="s-label">Common Questions</p>
+    <h2 class="s-title">Questions I <span class="outline">Always Get.</span></h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item reveal"><div class="fq">How long does a website project take?</div><p class="fa">Most websites take 4&ndash;8 weeks from strategy approval to launch, depending on size and complexity. I give you a fixed timeline in the proposal and I stick to it.</p></div>
+    <div class="faq-item reveal" style="transition-delay:0.1s"><div class="fq">When will I see SEO results?</div><p class="fa">Honest answer: 3&ndash;6 months for meaningful movement, 6&ndash;12 months for significant results in competitive niches. Anyone promising faster is either oversimplifying or overpromising.</p></div>
+    <div class="faq-item reveal" style="transition-delay:0.15s"><div class="fq">Do I need all three services together?</div><p class="fa">No. Each service works independently. But they do compound when combined &mdash; an SEO-built site with a regular content programme outperforms either in isolation by a wide margin.</p></div>
+    <div class="faq-item reveal" style="transition-delay:0.2s"><div class="fq">What happens after launch?</div><p class="fa">You can retain me for ongoing SEO and content, or take the handover and run it yourself. I train you on the CMS either way. No lock-in clauses.</p></div>
+    <div class="faq-item reveal" style="transition-delay:0.25s"><div class="fq">Do you work with international clients?</div><p class="fa">Yes. All collaboration happens asynchronously with clear documentation so time zones are never a problem.</p></div>
+    <div class="faq-item reveal" style="transition-delay:0.3s"><div class="fq">How do you handle revisions?</div><p class="fa">Design and content revisions are included as specified in your proposal. I use a structured feedback process so nothing gets lost in email chains. You see it, you comment, I fix it.</p></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-big reveal">
+    <span class="outline">Ready to</span>
+    <span class="fill">Start Step</span>
+    <span class="purple">One?</span>
+  </div>
+  <div class="cta-form reveal" style="transition-delay:0.2s">
+    <input type="email" id="emailIn" placeholder="your@email.com">
+    <button onclick="handleCTA()">Send It &rarr;</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="f-brand"><img src="logo.png" alt="Divyam Jain — Genos Studio"><p>I build websites that rank, SEO that works, and content that converts.</p></div>
+    <div class="f-col"><h5>Work</h5><ul><li><a href="services.html#web">Web Design</a></li><li><a href="services.html#seo">SEO Strategy</a></li><li><a href="services.html#content">Blog Writing</a></li></ul></div>
+    <div class="f-col"><h5>Studio</h5><ul><li><a href="about.html">About Me</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="f-col"><h5>Connect</h5><ul><li><a href="#">Twitter / X</a></li><li><a href="#">LinkedIn</a></li><li><a href="contact.html">divyam@genosstudio.co</a></li></ul></div>
+  </div>
+  <div class="footer-bot">
+    <p class="f-copy">&copy; 2025 Divyam Jain — Genos Studio. All rights reserved.</p>
+    <div class="f-soc"><a class="f-s" href="#">TW</a><a class="f-s" href="#">LI</a><a class="f-s" href="#">IG</a></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

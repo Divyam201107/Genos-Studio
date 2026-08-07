@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Divyam Jain — My Story, Values & Approach</title>
+<meta name="description" content="I'm Divyam Jain, a web designer and SEO specialist helping businesses dominate their corner of the internet. Here's who I am and why I do it.">
+<meta name="keywords" content="about Divyam Jain, freelance web designer, SEO specialist, web design portfolio">
+<link rel="canonical" href="https://genosstudio.co/about.html">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+/* ABOUT PAGE */
+.story-grid {
+  position: relative; z-index: 1;
+  padding: 120px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start;
+}
+.story-big {
+  font-family: var(--fd); font-size: clamp(32px,4vw,52px);
+  font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
+  margin-bottom: 36px;
+}
+.story-big em { font-style: normal; color: var(--purple-hit); }
+.story-body { font-size: 17px; line-height: 1.9; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+
+.values-section {
+  position: relative; z-index: 1;
+  padding: 120px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.values-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 80px;
+}
+.value-card {
+  background: #000; border: 1px solid rgba(255,255,255,0.07);
+  padding: 52px 44px; transition: all 0.3s;
+}
+.value-card:hover { border-color: rgba(168,85,247,0.35); background: #060606; }
+.vc-num  { font-family: var(--fm); font-size: 11px; letter-spacing: 0.1em; color: var(--purple-hit); margin-bottom: 32px; }
+.vc-title{ font-family: var(--fd); font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; }
+.vc-desc { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.45); }
+
+.why-section {
+  position: relative; z-index: 1;
+  padding: 120px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.why-row {
+  display: flex; gap: 60px; align-items: flex-start;
+  padding: 48px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.why-row:last-child { border-bottom: none; }
+.wr-num   { font-family: var(--fm); font-size: 11px; letter-spacing: 0.12em; color: var(--purple-hit); min-width: 80px; padding-top: 4px; }
+.wr-title { font-family: var(--fd); font-size: 26px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 12px; min-width: 260px; }
+.wr-desc  { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.45); flex: 1; }
+
+#portfolio {
+  position: relative; z-index: 1;
+  padding: 120px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.portfolio-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 80px; }
+.port-card {
+  background: #000; border: 1px solid rgba(255,255,255,0.07);
+  padding: 52px 44px 36px; transition: all 0.4s; min-height: 300px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.port-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+.pc-tag   { font-family: var(--fm); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-hit); margin-bottom: 24px; }
+.pc-title { font-family: var(--fd); font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 12px; }
+.pc-desc  { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.4); }
+.pc-result{ font-family: var(--fm); font-size: 11px; letter-spacing: 0.08em; color: var(--purple-bright); margin-top: 24px; }
+
+@media (max-width: 1024px) {
+  .story-grid { grid-template-columns: 1fr; gap: 40px; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .story-grid, .values-section, .why-section, #portfolio { padding: 80px 24px; }
+  .values-grid, .portfolio-grid { grid-template-columns: 1fr; }
+  .why-row { flex-direction: column; gap: 16px; }
+  .wr-num  { min-width: auto; }
+  .wr-title{ min-width: auto; }
+}
+</style>
+</head>
+<body>
+
+<div id="cur"><div class="dot"></div><div class="ring"></div></div>
+<div class="nl-mobile" id="nlm">
+  <a href="index.html"    onclick="closeMob()">Home</a>
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="process.html"  onclick="closeMob()">Process</a>
+  <a href="about.html"    onclick="closeMob()">About</a>
+  <a href="blog.html"     onclick="closeMob()">Blog</a>
+</div>
+<canvas id="threeCanvas"></canvas>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Divyam Jain — Genos Studio"></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="contact.html" class="nav-btn">Start a Project</a>
+    <div class="hb" onclick="toggleMob()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <span class="page-hero-label">My Story</span>
+  <h1 class="page-hero-title">
+    <span>I Am</span>
+    <span class="stroke">Divyam</span>
+    <span class="hit">Jain.</span>
+  </h1>
+  <p class="page-hero-sub">I build websites, SEO strategies, and content for businesses that are serious about growing online. No fluff. No bloated retainers. Just results.</p>
+</div>
+
+<!-- STORY -->
+<div class="story-grid">
+  <div class="reveal">
+    <h2 class="story-big">I got tired of watching <em>great businesses</em> get buried by mediocre ones.</h2>
+    <a href="contact.html" class="btn-ghost" style="margin-top:16px">Work With Me</a>
+  </div>
+  <div class="reveal" style="transition-delay:0.2s">
+    <p class="story-body">Genos Studio is me — Divyam Jain. It was born out of frustration. I kept seeing brilliant businesses &mdash; real products, real value, real passion &mdash; getting outranked by competitors who had nothing but a better web presence. That felt wrong.</p>
+    <p class="story-body">So I built a practice that does three things properly: web design that converts, SEO that sticks, and content that compounds. Not three separate services bolted together, but one connected system designed to get you found, make you trusted, and turn visitors into clients.</p>
+    <p class="story-body">Every project I take on gets my full attention. I stay selective on purpose. I'd rather do fewer things exceptionally well than take on every project and do mediocre work for everyone.</p>
+  </div>
+</div>
+
+<!-- VALUES -->
+<div class="values-section">
+  <div class="reveal">
+    <p class="s-label">What I Stand For</p>
+    <h2 class="s-title">Built on <span class="outline">Principles.</span></h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal" style="transition-delay:0.05s">
+      <div class="vc-num">01</div>
+      <div class="vc-title">Honesty Over Hype</div>
+      <p class="vc-desc">I don't promise page-one rankings in 30 days. I tell you what's realistic, what's possible, and what it actually takes. That's rarer than it should be.</p>
+    </div>
+    <div class="value-card reveal" style="transition-delay:0.15s">
+      <div class="vc-num">02</div>
+      <div class="vc-title">Systems, Not Sprints</div>
+      <p class="vc-desc">I build things that compound. A well-built website, a growing backlink profile, a content library &mdash; these get more valuable over time. I think in years, not campaigns.</p>
+    </div>
+    <div class="value-card reveal" style="transition-delay:0.25s">
+      <div class="vc-num">03</div>
+      <div class="vc-title">Your Growth is My Scorecard</div>
+      <p class="vc-desc">I don't measure success in deliverables. I measure it in your traffic, your leads, your revenue. If you're not growing, something needs to change, and I'll say so.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHY DIFFERENT -->
+<div class="why-section">
+  <div class="reveal">
+    <p class="s-label">Why I'm Different</p>
+    <h2 class="s-title">The Honest <span class="outline">Difference.</span></h2>
+  </div>
+  <div style="margin-top:80px">
+    <div class="why-row reveal">
+      <div class="wr-num">01 &mdash;</div>
+      <div class="wr-title">I'm not an agency</div>
+      <p class="wr-desc">No account managers, no junior staff handling your work. When you work with me, you work directly with the person doing the work. That means faster decisions, better quality, and zero telephone-game errors.</p>
+    </div>
+    <div class="why-row reveal">
+      <div class="wr-num">02 &mdash;</div>
+      <div class="wr-title">Design + SEO as one system</div>
+      <p class="wr-desc">Most studios hand off a beautiful website with zero thought for how Google will index it. Most SEO agencies optimise pages that look terrible. I design for users and search engines simultaneously &mdash; the result is a site that ranks and converts.</p>
+    </div>
+    <div class="why-row reveal">
+      <div class="wr-num">03 &mdash;</div>
+      <div class="wr-title">I say no to the wrong projects</div>
+      <p class="wr-desc">If your business isn't a good fit for what I do, I'll tell you. I'd rather point you in the right direction than take your money and underdeliver. It keeps my reputation intact and means every client I do take on gets my best work.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO SAMPLES -->
+<div id="portfolio">
+  <div class="reveal">
+    <p class="s-label">Selected Work</p>
+    <h2 class="s-title">Projects I'm <span class="outline">Proud Of.</span></h2>
+  </div>
+  <div class="portfolio-grid">
+    <div class="port-card reveal">
+      <div>
+        <div class="pc-tag">Web Design + SEO</div>
+        <div class="pc-title">Legal Services Firm</div>
+        <p class="pc-desc">Complete redesign and 6-month SEO campaign targeting high-value legal keywords in Mumbai.</p>
+      </div>
+      <div class="pc-result">Result &rarr; 340% organic traffic increase in 5 months</div>
+    </div>
+    <div class="port-card reveal" style="transition-delay:0.1s">
+      <div>
+        <div class="pc-tag">Content Strategy</div>
+        <div class="pc-title">E-commerce Brand</div>
+        <p class="pc-desc">24-post content cluster strategy targeting product-adjacent keywords. Built topical authority from scratch.</p>
+      </div>
+      <div class="pc-result">Result &rarr; 28 keywords on page 1 within 90 days</div>
+    </div>
+    <div class="port-card reveal" style="transition-delay:0.2s">
+      <div>
+        <div class="pc-tag">Web Development</div>
+        <div class="pc-title">SaaS Startup</div>
+        <p class="pc-desc">Next.js marketing site with 98 PageSpeed score, animated landing page, and integrated blog CMS.</p>
+      </div>
+      <div class="pc-result">Result &rarr; PageSpeed 98 · Bounce rate down 42%</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-big reveal">
+    <span class="outline">Think I'm</span>
+    <span class="fill">A Good Fit?</span>
+    <span class="purple">Let's Find Out.</span>
+  </div>
+  <div class="cta-form reveal" style="transition-delay:0.2s">
+    <input type="email" id="emailIn" placeholder="your@email.com">
+    <button onclick="handleCTA()">Send It &rarr;</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="f-brand"><img src="logo.png" alt="Divyam Jain"><p>I build websites that rank, SEO that works, and content that converts.</p></div>
+    <div class="f-col"><h5>Work</h5><ul><li><a href="services.html#web">Web Design</a></li><li><a href="services.html#seo">SEO Strategy</a></li><li><a href="services.html#content">Blog Writing</a></li></ul></div>
+    <div class="f-col"><h5>Studio</h5><ul><li><a href="about.html">About Me</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="f-col"><h5>Connect</h5><ul><li><a href="#">Twitter / X</a></li><li><a href="#">LinkedIn</a></li><li><a href="contact.html">divyam@genosstudio.co</a></li></ul></div>
+  </div>
+  <div class="footer-bot">
+    <p class="f-copy">&copy; 2025 Divyam Jain — Genos Studio. All rights reserved.</p>
+    <div class="f-soc"><a class="f-s" href="#">TW</a><a class="f-s" href="#">LI</a><a class="f-s" href="#">IG</a></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

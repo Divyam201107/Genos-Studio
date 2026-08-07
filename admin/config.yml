@@ -1,0 +1,57 @@
+backend:
+  name: github
+  repo: Divyam201107/Genos-Studio
+  branch: main
+
+media_folder: ""
+public_folder: ""
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    files:
+      - name: "posts"
+        label: "All Blog Posts"
+        file: "posts-data.json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{title}} — {{date}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "URL Slug"
+                name: "slug"
+                widget: "string"
+                hint: "Lowercase, hyphens only, no spaces. Example: how-to-rank-on-google"
+                pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Use only lowercase letters, numbers, and hyphens."]
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["SEO", "Web Design", "Content", "Case Study", "Business"]
+                default: "SEO"
+              - label: "Publish Date"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                picker_utc: true
+              - label: "Read Time"
+                name: "read_time"
+                widget: "string"
+                default: "5 min read"
+              - label: "Meta Description (SEO)"
+                name: "description"
+                widget: "text"
+                hint: "140–155 characters, shown under your title in Google search results."
+              - label: "Keywords (SEO)"
+                name: "keywords"
+                widget: "string"
+                required: false
+              - label: "Post Content"
+                name: "body"
+                widget: "markdown"
+                hint: "Use ## for headings, **bold**, *italic*, and - for bullet lists."
